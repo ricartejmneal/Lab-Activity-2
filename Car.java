@@ -1,4 +1,4 @@
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Serviceable {
     private int numberofDoors;
 
     Car(String brand, String model, int year, int numberofDoors) {
@@ -23,5 +23,8 @@ public class Car extends Vehicle {
     }
     public void moveRight(){
         System.out.println("Car is Moving on Right.");
+    }
+    public void service() {
+        System.out.println("Car: Check oil and brakes.");
     }
 }
