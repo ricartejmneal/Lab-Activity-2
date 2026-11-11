@@ -2,6 +2,9 @@ public class Main {
     public static void printDetails(Vehicle vehicle) {
         vehicle.displayInfo();
     }
+    public static void performService(Serviceable item) {
+        item.service();
+    }
     public static void main(String[] args) {
         System.out.println("=== 1. Parent Reference ===");
         Vehicle vehicle = new Car ("Ford", "Mustang", 2020, 2);
@@ -10,6 +13,7 @@ public class Main {
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
         System.out.println();
 
         vehicle = new Motorcycle("Harley-Davidson", "Street 750", 2019, "V-Twin");
@@ -19,6 +23,7 @@ public class Main {
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
 
         System.out.println("\n === 2. Method Parameter ===");
         Car car = new Car ("Toyota", "Camry", 2021, 4);
@@ -29,18 +34,21 @@ public class Main {
         car.moveBackward();
         car.moveLeft();
         car.moveRight();
+        performService(car);
 
         printDetails(motorcycle);
         motorcycle.moveForward();
         motorcycle.moveBackward();
         motorcycle.moveLeft();
         motorcycle.moveRight();
+        performService(motorcycle);
 
         printDetails(truck);
         truck.moveForward();
         truck.moveBackward();
         truck.moveLeft();
         truck.moveRight();
+        performService(truck);
 
         System.out.println("\n === 3. Polymorphic Array ===");
         Vehicle[] vehicles = {
@@ -49,7 +57,7 @@ public class Main {
             new Truck("Ford", "F-150", 2019, 4)
         };
 
-    for(Vehicle currentVehicle: vehicles){
+        for(Vehicle currentVehicle: vehicles){
         printDetails(currentVehicle);
         currentVehicle.moveForward();
         currentVehicle.moveBackward();
@@ -57,5 +65,17 @@ public class Main {
         currentVehicle.moveRight();
         System.out.println();
     }
+
+        Serviceable[] serviceables = {
+            new Car("Chevrolet", "Impala", 2017, 4),
+            new Motorcycle("Kawasaki", "Ninja ZX-6R", 2021, "Inline Four"),
+            new Truck("Ram", "1500", 2022, 4),
+            new Printer()
+        };
+
+        for(Serviceable currentServiceable: serviceables){
+            performService(currentServiceable);
+            System.out.println();
+        }
 }
 }
